@@ -1,0 +1,103 @@
+﻿@using Pizza.Models
+@model IEnumerable<Product>
+<nav class="product-nav">
+    <ul class="product-nav__ul">
+        <li><button type="button" name="pizza-button" class="product-nav__button">Пицца</button></li>
+        <li><button type="button" name="drink-button" class="product-nav__button">Напитки</button></li>
+        <li><button type="button" name="snack-button" class="product-nav__button">Закуски</button></li>
+        <li><button type="button" name="salad-button" class="product-nav__button">Салаты</button></li>
+        <li><button type="button" name="kombo-button" class="product-nav__button">Комбо</button></li>
+    </ul>
+</nav>
+<div class="products-container">
+    <section class="products-container__pizza category-container">
+        <h2 class="category-container__header">Пицца</h2>
+        @foreach (var p in Model.Where(p => p.Category == "Pizza").OrderByDescending(p => p.ProductId))
+        {
+            <section class="category-container__item product-container">
+                @{
+                    string imgPath = p.ImagePath;
+                    imgPath ??= "/img/placeholder.webp";
+                    string alt = "Пицца " + p.Name;
+                }
+                <img src=@imgPath alt="@alt" class="product-container__img"/>
+                <h3 class="product-container__header">@p.Name</h3>
+                <p class="product-container__descr">@p.Description</p>
+                @{ string priceLabel = p.Price + " руб"; }
+                <span class="product-container__price">@priceLabel</span>
+            </section>
+        }
+    </section>
+    <section class="products-container__drink category-container">
+        <h2 class="category-container__header">Напитки</h2>
+        @foreach (var p in Model.Where(p => p.Category == "Drink").OrderByDescending(p => p.ProductId))
+        {
+            <section class="category-container__item product-container">
+                @{
+                    string imgPath = p.ImagePath;
+                    imgPath ??= "/img/placeholder.webp";
+                    string alt = "Напиток " + p.Name;
+                }
+                <img src=@imgPath alt="@alt" class="product-container__img"/>
+                <h3 class="product-container__header">@p.Name</h3>
+                <p class="product-container__descr">@p.Description</p>
+                @{ string priceLabel = p.Price + " руб"; }
+                <span class="product-container__price">@priceLabel</span>
+            </section>
+        }
+    </section>
+    <section class="products-container__snack category-container">
+        <h2 class="category-container__header">Закуски</h2>
+        @foreach (var p in Model.Where(p => p.Category == "Snack").OrderByDescending(p => p.ProductId))
+        {
+            <section class="category-container__item product-container">
+                @{
+                    string imgPath = p.ImagePath;
+                    imgPath ??= "/img/placeholder.webp";
+                    string alt = "Закуска " + p.Name;
+                }
+                <img src=@imgPath alt="@alt" class="product-container__img"/>
+                <h3 class="product-container__header">@p.Name</h3>
+                <p class="product-container__descr">@p.Description</p>
+                @{ string priceLabel = p.Price + " руб"; }
+                <span class="product-container__price">@priceLabel</span>
+            </section>
+        }
+    </section>
+    <section class="products-container__salad category-container">
+        <h2 class="category-container__header">Салаты</h2>
+        @foreach (var p in Model.Where(p => p.Category == "Salad").OrderByDescending(p => p.ProductId))
+        {
+            <section class="category-container__item product-container">
+                @{
+                    string imgPath = p.ImagePath;
+                    imgPath ??= "/img/placeholder.webp";
+                    string alt = "Салат " + p.Name;
+                }
+                <img src=@imgPath alt="@alt" class="product-container__img"/>
+                <h3 class="product-container__header">@p.Name</h3>
+                <p class="product-container__descr">@p.Description</p>
+                @{ string priceLabel = p.Price + " руб"; }
+                <span class="product-container__price">@priceLabel</span>
+            </section>
+        }
+    </section>
+    <section class="products-container__kombo category-container">
+        <h2 class="category-container__header">Комбо-наборы</h2>
+        @foreach (var p in Model.Where(p => p.Category == "Kombo").OrderByDescending(p => p.ProductId))
+        {
+            <section class="category-container__item product-container">
+                @{
+                    string imgPath = p.ImagePath;
+                    imgPath ??= "/img/placeholder.webp";
+                    string alt = "Комбо " + p.Name;
+                }
+                <img src=@imgPath alt="@alt" class="product-container__img"/>
+                <h3 class="product-container__header">@p.Name</h3>
+                <p class="product-container__descr">@p.Description</p>
+                @{ string priceLabel = p.Price + " руб"; }
+                <span class="product-container__price">@priceLabel</span>
+            </section>
+        }
+    </section>
+</div>
