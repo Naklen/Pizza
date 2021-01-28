@@ -5,11 +5,11 @@ using System.Threading.Tasks;
 
 namespace Pizza.Models
 {
-    public class Order : ModelObject
+    public class Order
     {
         public int OrderId { get; set; }
 
-        public int UserId { get; set; }
+        public int Id { get; set; }
         public User User { get; set; }
         
         public List<OrderItem> OrderItems { get; set; }

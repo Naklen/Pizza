@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace Pizza.Models
 {
-    public class Product : ModelObject
+    public class Product
     { 
         public int ProductId { get; set; }
         public string Name { get; set; }

@@ -1,11 +1,13 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Pizza.Models;
+using Pizza.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,9 +27,18 @@ namespace Pizza
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            Configuration.Bind("AdminAccount", new Admin());
             services.AddControllersWithViews();
             services.AddDbContext<PizzaContext>(options =>
                 options.UseSqlServer(Configuration.GetConnectionString("PizzaContext")));
+            services.AddIdentity<User, IdentityRole>(opts => {
+                opts.Password.RequiredLength = 5;   
+                opts.Password.RequireNonAlphanumeric = false;   
+                opts.Password.RequireLowercase = true;
+                opts.Password.RequireUppercase = true; 
+                opts.Password.RequireDigit = true; 
+            })
+                    .AddEntityFrameworkStores<PizzaContext>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,6 +59,7 @@ namespace Pizza
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
