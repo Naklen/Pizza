@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Pizza.Models;
 using Pizza.ViewModels;
@@ -18,6 +19,12 @@ namespace Pizza.Controllers
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+        }
+
+        [Authorize]
+        public async Task<IActionResult> Profile()
+        {
+            return View(await userManager.FindByNameAsync(User.Identity.Name));
         }
 
         [HttpGet]

@@ -182,3 +182,17 @@ input[type="number"] {
     width: 50%;
     text-align: center;    
 }
+
+.product-cart {
+    display: block;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    height: 80vh;
+    width: 20%;
+}
+.product-cart__container {
+    overflow-y: auto;
+    scrollbar-width: none;
+    height: 80%;
+}

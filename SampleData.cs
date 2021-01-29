@@ -15,7 +15,7 @@ namespace Pizza
                         Name = "BlankPizza",
                         Category = "Pizza",
                         Description = "Blank pizza for test",
-                        Price = 0,
+                        Price = 10,
                         ImagePath = null
                     },
                     new Product
@@ -23,7 +23,7 @@ namespace Pizza
                         Name = "BlankPizza2",
                         Category = "Pizza",
                         Description = "Another blank pizza for test",
-                        Price = 0,
+                        Price = 20,
                         ImagePath = null
                     },
                     new Product
@@ -31,7 +31,7 @@ namespace Pizza
                         Name = "BlankPizza3",
                         Category = "Pizza",
                         Description = "Blank pizza for test",
-                        Price = 0,
+                        Price = 30,
                         ImagePath = null
                     },
                     new Product
@@ -39,14 +39,14 @@ namespace Pizza
                         Name = "BlankPizza4",
                         Category = "Pizza",
                         Description = "Another blank pizza for test",
-                        Price = 0,
+                        Price = 40,
                         ImagePath = null
                     }, new Product
                     {
                         Name = "BlankPizza5",
                         Category = "Pizza",
                         Description = "Blank pizza for test",
-                        Price = 0,
+                        Price = 50,
                         ImagePath = null
                     },
                     new Product
@@ -54,7 +54,7 @@ namespace Pizza
                         Name = "BlankPizza6",
                         Category = "Pizza",
                         Description = "Another blank pizza for test",
-                        Price = 0,
+                        Price = 60,
                         ImagePath = null
                     },
                     new Product
@@ -62,7 +62,7 @@ namespace Pizza
                         Name = "BlankDrink",
                         Category = "Drink",
                         Description = "Blank drink for test",
-                        Price = 0,
+                        Price = 10,
                         ImagePath = null
                     },
                     new Product
@@ -70,7 +70,7 @@ namespace Pizza
                         Name = "BlankDrink2",
                         Category = "Drink",
                         Description = "Another blank drink for test",
-                        Price = 0,
+                        Price = 20,
                         ImagePath = null
                     },
                     new Product
@@ -78,7 +78,7 @@ namespace Pizza
                         Name = "BlankDrink3",
                         Category = "Drink",
                         Description = "Blank drink for test",
-                        Price = 0,
+                        Price = 30,
                         ImagePath = null
                     },
                     new Product
@@ -86,7 +86,7 @@ namespace Pizza
                         Name = "BlankDrink4",
                         Category = "Drink",
                         Description = "Another blank drink for test",
-                        Price = 0,
+                        Price = 40,
                         ImagePath = null
                     },
                     new Product
@@ -94,7 +94,7 @@ namespace Pizza
                         Name = "BlankDrink5",
                         Category = "Drink",
                         Description = "Blank drink for test",
-                        Price = 0,
+                        Price = 50,
                         ImagePath = null
                     },
                     new Product
@@ -102,7 +102,7 @@ namespace Pizza
                         Name = "BlankDrink6",
                         Category = "Drink",
                         Description = "Another blank drink for test",
-                        Price = 0,
+                        Price = 60,
                         ImagePath = null
                     },
                     new Product
@@ -110,7 +110,7 @@ namespace Pizza
                         Name = "BlankSnack",
                         Category = "Snack",
                         Description = "Blank snack for test",
-                        Price = 0,
+                        Price = 10,
                         ImagePath = null
                     },
                     new Product
@@ -118,7 +118,7 @@ namespace Pizza
                         Name = "BlankSnack2",
                         Category = "Snack",
                         Description = "Another blank snack for test",
-                        Price = 0,
+                        Price = 20,
                         ImagePath = null
                     },
                     new Product
@@ -126,7 +126,7 @@ namespace Pizza
                         Name = "BlankSnack3",
                         Category = "Snack",
                         Description = "Blank snack for test",
-                        Price = 0,
+                        Price = 30,
                         ImagePath = null
                     },
                     new Product
@@ -134,7 +134,7 @@ namespace Pizza
                         Name = "BlankSnack4",
                         Category = "Snack",
                         Description = "Another blank snack for test",
-                        Price = 0,
+                        Price = 40,
                         ImagePath = null
                     },
                     new Product
@@ -142,7 +142,7 @@ namespace Pizza
                         Name = "BlankSnack5",
                         Category = "Snack",
                         Description = "Blank snack for test",
-                        Price = 0,
+                        Price = 50,
                         ImagePath = null
                     },
                     new Product
@@ -150,7 +150,7 @@ namespace Pizza
                         Name = "BlankSnack6",
                         Category = "Snack",
                         Description = "Another blank snack for test",
-                        Price = 0,
+                        Price = 60,
                         ImagePath = null
                     },
                     new Product
@@ -158,7 +158,7 @@ namespace Pizza
                         Name = "BlankSalad",
                         Category = "Salad",
                         Description = "Blank salad for test",
-                        Price = 0,
+                        Price = 10,
                         ImagePath = null
                     },
                     new Product
@@ -166,7 +166,7 @@ namespace Pizza
                         Name = "BlankSalad2",
                         Category = "Salad",
                         Description = "Another blank salad for test",
-                        Price = 0,
+                        Price = 20,
                         ImagePath = null
                     },
                     new Product
@@ -174,7 +174,7 @@ namespace Pizza
                         Name = "BlankSalad3",
                         Category = "Salad",
                         Description = "Blank salad for test",
-                        Price = 0,
+                        Price = 30,
                         ImagePath = null
                     },
                     new Product
@@ -182,7 +182,7 @@ namespace Pizza
                         Name = "BlankSalad4",
                         Category = "Salad",
                         Description = "Another blank salad for test",
-                        Price = 0,
+                        Price = 40,
                         ImagePath = null
                     },
                     new Product
@@ -190,7 +190,7 @@ namespace Pizza
                         Name = "BlankSalad5",
                         Category = "Salad",
                         Description = "Blank salad for test",
-                        Price = 0,
+                        Price = 50,
                         ImagePath = null
                     },
                     new Product
@@ -198,7 +198,7 @@ namespace Pizza
                         Name = "BlankSalad6",
                         Category = "Salad",
                         Description = "Another blank salad for test",
-                        Price = 0,
+                        Price = 60,
                         ImagePath = null
                     },
                     new Product
@@ -206,7 +206,7 @@ namespace Pizza
                         Name = "BlankKombo",
                         Category = "Kombo",
                         Description = "Blank kombo for test",
-                        Price = 0,
+                        Price = 10,
                         ImagePath = null
                     },
                     new Product
@@ -214,7 +214,7 @@ namespace Pizza
                         Name = "BlankKombo2",
                         Category = "Kombo",
                         Description = "Another blank kombo for test",
-                        Price = 0,
+                        Price = 20,
                         ImagePath = null
                     },
                     new Product
@@ -222,7 +222,7 @@ namespace Pizza
                         Name = "BlankKombo3",
                         Category = "Kombo",
                         Description = "Blank kombo for test",
-                        Price = 0,
+                        Price = 30,
                         ImagePath = null
                     },
                     new Product
@@ -230,7 +230,7 @@ namespace Pizza
                         Name = "BlankKombo4",
                         Category = "Kombo",
                         Description = "Another blank kombo for test",
-                        Price = 0,
+                        Price = 40,
                         ImagePath = null
                     },
                     new Product
@@ -238,7 +238,7 @@ namespace Pizza
                         Name = "BlankKombo5",
                         Category = "Kombo",
                         Description = "Blank kombo for test",
-                        Price = 0,
+                        Price = 50,
                         ImagePath = null
                     },
                     new Product
@@ -246,7 +246,7 @@ namespace Pizza
                         Name = "BlankKombo6",
                         Category = "Kombo",
                         Description = "Another blank kombo for test",
-                        Price = 0,
+                        Price = 60,
                         ImagePath = null
                     }
                 );

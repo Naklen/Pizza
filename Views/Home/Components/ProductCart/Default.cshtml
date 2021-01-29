@@ -1,0 +1,17 @@
+﻿@using Pizza.Models
+@using Microsoft.EntityFrameworkCore
+@model (Order, DbSet<Product>, DbSet<OrderItem>)
+
+<div class="product-cart__container">
+    @if (Model.Item1 != null)
+    {
+        @foreach (var item in Model.Item3.Where(oi => oi.Order == Model.Item1))
+        {
+            <div class="product-cart__item cart-item">
+                <h3 class="cart-item__name">@Model.Item2.Find(item.ProductId).Name</h3>
+                <span class="cart-item__info">@Model.Item2.Find(item.ProductId).Price руб. x @item.Quantity</span>
+            </div>
+        }    
+    }
+</div>
+<span class="product-cart__total-price">Всего: <span>@Model.Item1.TotalPrice</span> руб.</span>
