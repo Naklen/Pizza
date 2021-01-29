@@ -36,7 +36,7 @@ namespace Pizza.Controllers
         public async Task<IActionResult> Register(RegisterViewModel model)
         {
             if (ModelState.IsValid)
-            {
+            {                
                 User user = new User { Email = model.Email, UserName = model.UserName, Address = model.Address, PhoneNumber = model.PhoneNumber };
                 var result = await userManager.CreateAsync(user, model.Password);
                 if (result.Succeeded)

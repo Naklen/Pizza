@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Pizza.Models;
@@ -25,7 +26,7 @@ namespace Pizza.Controllers
         public IActionResult Index()
         {
             return View(db.Products.ToList());
-        }               
+        }
 
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
@@ -33,9 +34,10 @@ namespace Pizza.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
+        [Authorize]
         [HttpPost]
-        public IActionResult AddToCart(AddToCartViewModel model)
-            {
+        public void AddToCart([FromBody] AddToCartViewModel model)
+        {
             var newItem = new OrderItem { ProductId = model.ProductId, Product = db.Products.Find(model.ProductId), Quantity = model.Quantity };
             var user = db.Users.Find(userManager.GetUserId(User));
             var order = db.Orders.Where(o => o.IsActive && o.User == user).FirstOrDefault();
@@ -49,7 +51,7 @@ namespace Pizza.Controllers
             }
             else
             {
-                newItem.Order = order;                
+                newItem.Order = order;
                 db.OrderItems.Add(newItem);
                 db.SaveChanges();
             }
@@ -66,9 +68,26 @@ namespace Pizza.Controllers
             else
             {
                 db.Orders.Update(order);
-            }            
+            }
             db.SaveChanges();
-            return RedirectToAction("Index", "Home");
+        }
+
+        [Authorize]
+        [HttpPost]
+        public void DeleteFromCart([FromBody] DeleteFromCartViewModel model)
+        {
+            var orderItem = db.OrderItems.Find(model.OrderItemId);
+            var order = db.Orders.Find(orderItem.OrderId);
+            order.TotalPrice -= (uint)(db.Products.Find(orderItem.ProductId).Price * orderItem.Quantity);
+            db.Orders.Update(order);
+            db.OrderItems.Remove(orderItem);            
+            db.SaveChanges();
+        }
+
+        [HttpGet]
+        public IActionResult GetCartView()
+        {           
+            return ViewComponent("ProductCart");
         }
     }
 }

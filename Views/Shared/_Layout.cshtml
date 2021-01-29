@@ -8,7 +8,7 @@
 </head>
 <body>
     <header class="header">
-        <img src="#" alt="" class="header__logo"/>
+        <img src="#" alt="" class="header__logo" />
         <h1 class="header__title">Pizza</h1>
         <div class="header__login">
             @if (User.Identity.IsAuthenticated)
@@ -25,9 +25,11 @@
                 <a asp-controller="Account" asp-action="Register">Регистрация</a>
             }
         </div>
-    </header>    
+    </header>
     <main role="main" class="main">
         @RenderBody()
-    </main>        
+    </main>
+    <script src="~/js/addToCart.js"></script>
+    <script src="~/js/deleteFromCart.js"></script>
 </body>
 </html>

@@ -26,7 +26,7 @@ namespace Pizza.Components
                 if (db.Orders.Any(o => o.User == user && o.IsActive))//user.Orders != null)                    
                         return View((db.Orders.Where(o => o.User == user && o.IsActive).FirstOrDefault(), db.Products, db.OrderItems));
             }
-            Order nullOrder = null;
+            Order nullOrder = null;            
             return View((nullOrder, db.Products, db.OrderItems));
         }
     }

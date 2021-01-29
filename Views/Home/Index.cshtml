@@ -22,16 +22,14 @@
         }
         <img src=@imgPath alt="@alt" class="product-container__img" />
         <h3 class="product-container__header">@p.Name</h3>
-        <p class="product-container__descr">@p.Description</p>
-        <form method="post" asp-controller="Home" asp-action="AddToCart">
+        <p class="product-container__descr">@p.Description</p>        
             <div class="product-container__quantity quantity-block">
                 <input type="hidden" name="ProductId" value="@p.ProductId" />
                 <input type="button" value="&ndash;"class="quantity-block__arrow-minus">
                 <input class="quantity-block__num" type="number" value="1" readonly name="Quantity"/>
                 <input type="button" value="+" class="quantity-block__arrow-plus">
             </div>
-            <input type="button" value="В корзину" class="product-container__in-cart-button"/>
-        </form>
+            <input type="button" value="В корзину" class="product-container__in-cart-button"/>        
         @{ string priceLabel = p.Price + " руб"; }
         <span class="product-container__price">@priceLabel</span>
     </section>
@@ -49,16 +47,14 @@
         }
         <img src=@imgPath alt="@alt" class="product-container__img" />
         <h3 class="product-container__header">@p.Name</h3>
-        <p class="product-container__descr">@p.Description</p>
-        <form method="post" asp-controller="Home" asp-action="AddToCart">
+        <p class="product-container__descr">@p.Description</p>        
             <div class="product-container__quantity quantity-block">
                 <input type="hidden" name="ProductId" value="@p.ProductId" />
                 <input type="button" value="&ndash;" class="quantity-block__arrow-minus">
                 <input class="quantity-block__num" type="number" value="1" readonly name="Quantity" />
                 <input type="button" value="+" class="quantity-block__arrow-plus">
             </div>
-            <input type="button" value="В корзину" class="product-container__in-cart-button" />
-        </form>
+            <input type="button" value="В корзину" class="product-container__in-cart-button" />        
         @{ string priceLabel = p.Price + " руб"; }
         <span class="product-container__price">@priceLabel</span>
     </section>
@@ -77,15 +73,13 @@
         <img src=@imgPath alt="@alt" class="product-container__img" />
         <h3 class="product-container__header">@p.Name</h3>
         <p class="product-container__descr">@p.Description</p>
-        <form method="post" asp-controller="Home" asp-action="AddToCart">
-            <div class="product-container__quantity quantity-block">
+                    <div class="product-container__quantity quantity-block">
                 <input type="hidden" name="ProductId" value="@p.ProductId" />
                 <input type="button" value="&ndash;" class="quantity-block__arrow-minus">
                 <input class="quantity-block__num" type="number" value="1" readonly name="Quantity" />
                 <input type="button" value="+" class="quantity-block__arrow-plus">
             </div>
-            <input type="button" value="В корзину" class="product-container__in-cart-button" />
-        </form>
+            <input type="button" value="В корзину" class="product-container__in-cart-button" />        
         @{ string priceLabel = p.Price + " руб"; }
         <span class="product-container__price">@priceLabel</span>
     </section>
@@ -103,16 +97,14 @@
         }
         <img src=@imgPath alt="@alt" class="product-container__img" />
         <h3 class="product-container__header">@p.Name</h3>
-        <p class="product-container__descr">@p.Description</p>
-        <form method="post" asp-controller="Home" asp-action="AddToCart">
+        <p class="product-container__descr">@p.Description</p>        
             <div class="product-container__quantity quantity-block">
                 <input type="hidden" name="ProductId" value="@p.ProductId" />
                 <input type="button" value="&ndash;" class="quantity-block__arrow-minus">
                 <input class="quantity-block__num" type="number" value="1" readonly name="Quantity" />
                 <input type="button" value="+" class="quantity-block__arrow-plus">
             </div>
-            <input type="button" value="В корзину" class="product-container__in-cart-button" />
-        </form>
+            <input type="button" value="В корзину" class="product-container__in-cart-button" />        
         @{ string priceLabel = p.Price + " руб"; }
         <span class="product-container__price">@priceLabel</span>
     </section>
@@ -130,16 +122,14 @@
         }
         <img src=@imgPath alt="@alt" class="product-container__img" />
         <h3 class="product-container__header">@p.Name</h3>
-        <p class="product-container__descr">@p.Description</p>
-        <form method="post" asp-controller="Home" asp-action="AddToCart">
-            <div class="product-container__quantity quantity-block">
-                <input type="hidden" name="ProductId" value="@p.ProductId" />
-                <input type="button" value="&ndash;" class="quantity-block__arrow-minus">
-                <input class="quantity-block__num" type="number" value="1" readonly name="Quantity" />
-                <input type="button" value="+" class="quantity-block__arrow-plus">
-            </div>
-            <input type="button" value="В корзину" class="product-container__in-cart-button" />
-        </form>
+        <p class="product-container__descr">@p.Description</p>        
+        <div class="product-container__quantity quantity-block">
+            <input type="hidden" name="ProductId" value="@p.ProductId" />
+            <input type="button" value="&ndash;" class="quantity-block__arrow-minus">
+            <input class="quantity-block__num" type="number" value="1" readonly name="Quantity" />
+            <input type="button" value="+" class="quantity-block__arrow-plus">
+        </div>
+        <input type="button" value="В корзину" class="product-container__in-cart-button" />        
         @{ string priceLabel = p.Price + " руб"; }
         <span class="product-container__price">@priceLabel</span>
         </section>
@@ -147,7 +137,9 @@
     </section>
 </div>
 <aside class="product-cart">
-    <h2>Корзина</h2>    
-    @await Component.InvokeAsync("ProductCart")  
+    <h2>Корзина</h2>
+    <div class="product-cart__wrapper">
+        @await Component.InvokeAsync("ProductCart")
+    </div>
 </aside>
 <script src="~/js/number.js"></script>
