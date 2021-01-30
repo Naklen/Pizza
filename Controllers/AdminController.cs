@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Pizza.Models;
 using Pizza.ViewModels;
@@ -35,12 +36,18 @@ namespace Pizza.Controllers
                     Name = p.Name,
                     Category = p.Category,
                     Description = p.Description,
-                    Price = p.Price
+                    Price = p.Price,
+                    Image = new FormFile(null, 0, 0, null, p.ImagePath)
                 }).ToList();
             return View(list);
         }
 
-
+        public IActionResult ClearProductList()
+        {
+            db.Products.RemoveRange(db.Products);
+            db.SaveChanges();
+            return RedirectToAction("ProductsList", "Admin");
+        }
 
         [HttpPost]
         public IActionResult CreateOrEditProduct(ProductViewModel model)

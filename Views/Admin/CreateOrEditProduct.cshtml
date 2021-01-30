@@ -1,7 +1,7 @@
 ﻿@model Pizza.ViewModels.ProductViewModel
 
-<form asp-action="SaveChanging" asp-controller="Admin" method="post" enctype="multipart/form-data">
-    <input asp-for="ProductId" type="hidden" value="@Model.ProductId">
+<form asp-action="SaveChanging" asp-controller="Admin" method="post" enctype="multipart/form-data" class="create-or-edit-form">
+    <input asp-for="ProductId" type="hidden" value="@Model.ProductId" class="create-or-edit-form">
     <label asp-for="Name"></label>
     <input type="text" name="Name" value="@Model.Name" />
     <label asp-for="Category"></label>
@@ -53,5 +53,6 @@
     <input type="text" name="Price" value="@Model.Price" />
     <label>Изображение</label>
     <input type="file" name="Image" />
-    <input type="submit" value="Применить" />
+    <input type="submit" value="Применить" class="animated-bottom-border"/>
 </form>
+<a asp-controller="Admin" asp-action="ProductsList" class="create-or-edit-product-back-link back-link">Назад</a>

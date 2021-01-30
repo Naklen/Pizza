@@ -1,3 +1,6 @@
 ﻿<h2>Панель администратора</h2>
-<a asp-controller="Admin" asp-action="ProductsList">Редактирование продуктов</a>
-<a asp-controller="Admin" asp-action="EditUsers">Управление пользователями</a>
+<div class="admin-panel">
+    <a asp-controller="Admin" asp-action="ProductsList" class="products-edit-link animated-bottom-border">Редактирование продуктов</a>
+    <!--a asp-controller="Admin" asp-action="EditUsers" class="users-management-link animated-bottom-border">Управление пользователями</a-->
+    <a asp-controller="Account" asp-action="Profile" class="create-or-edit-product-back-link back-link">Назад</a>
+</div>

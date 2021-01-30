@@ -20,7 +20,7 @@ namespace Pizza.ViewModels
         [Display(Name = "Описание")]
         public string Description { get; set; }
         [Required]
-        [Display(Name = "Цена")]
+        [Display(Name = "Цена (max 65034)")]
         public ushort Price { get; set; }
         public IFormFile Image { get; set; }
     }

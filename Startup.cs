@@ -36,7 +36,8 @@ namespace Pizza
                 opts.Password.RequireNonAlphanumeric = false;   
                 opts.Password.RequireLowercase = true;
                 opts.Password.RequireUppercase = true; 
-                opts.Password.RequireDigit = true; 
+                opts.Password.RequireDigit = true;
+                opts.User.RequireUniqueEmail = true;
             })
                     .AddEntityFrameworkStores<PizzaContext>();
         }

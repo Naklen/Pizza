@@ -10,6 +10,51 @@ body {
 a {
     text-decoration: none;
     color: black;
+    position: relative;
+}
+
+input[type="submit"],
+input[type="button"],
+button {
+    cursor: pointer;
+}
+
+animated-bottom-border {
+    position: relative;
+    transition: all 0.3s ease;
+    background-color: transparent;
+    border: none;
+    font-size: medium;
+    font-family: inherit;
+}
+.animated-bottom-border::before {
+    display: block;
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 0;
+    background-color: black;
+    transition: all .3s ease-in-out, left .3s ease-in-out;
+    left: 50%;
+    bottom: 0;
+}
+.animated-bottom-border::after {
+    display: block;
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 0;
+    background-color: black;
+    transition: all .3s ease-in-out;
+    left: 50%;
+    bottom: 0;
+}
+.animated-bottom-border:hover::before {
+    width: 50%;
+    left: 0;
+}
+.animated-bottom-border:hover::after {
+    width: 50%;
 }
 
 .header {
@@ -17,23 +62,69 @@ a {
     /* font-family: 'M PLUS Rounded 1c', sans-serif; */
     font-size: x-large;
     display: flex;
-
+    top: -1.5rem;
 }
 
 .header__title {
     margin: 0;
     padding: 0;
+    margin-top: 1.8rem;
+    margin-left: -4rem;
+    background-color: transparent;
+    z-index: 110;
+}
+
+.header__login {
+    position: absolute;
+    right: 2rem;
+    top: 1.8rem;
+    background-color: transparent;
+    z-index: 110;
+}
+
+.header__account-name:hover {
+    color: royalblue;
+    transition: all .3s ease;
+}
+
+.header__account-name:hover::before,
+.header__account-name:hover::after {
+    background-color: royalblue;
+}
+
+.logout-form { 
+    display: flex;
+    justify-content: center;
+}
+
+.logout-form__button {
+    background-color: transparent;
+    border: none;
+    font-family: inherit;
+    font-size: medium;
+    transition: all .3s ease;
+    padding: 0;
+}
+
+.logout-form:hover .logout-form__button {
+    color: crimson;
+}
+
+.logout-form:hover::before,
+.logout-form:hover::after {
+    background-color: crimson;
 }
 
 .product-nav {
-    top: 8rem;
+    top: -2px;
     height: 70px;
     background-color: white;
-    z-index: 10;
-    position: fixed;
+    z-index: 100;
+    position: sticky;
     width: 100%;
     border-top: 2px solid black;
     border-bottom: 2px solid black;
+    margin-top: 2rem;
 }
 
 .product-nav__ul {
@@ -62,8 +153,8 @@ a {
     background-color: transparent;
     font-style: inherit;
     font-size: 18px;
-    z-index: 1;
     transition: all 0.3s ease;
+    z-index: 130;
 }
 
 .product-nav__button:after {
@@ -112,7 +203,7 @@ a {
 }
 
 .products-container {
-    margin-top: 8rem;
+    margin-top: 4rem;
 }
 
 .category-container {
@@ -138,6 +229,7 @@ a {
     width: 25%;
     overflow: hidden;
     height: 30rem;
+    position: relative;
 }
 
 .product-container__img-wrapper {
@@ -159,9 +251,11 @@ a {
     /* margin-left: 20px; */
     color: gray;
     font-weight: lighter;
+    min-height: 2rem;
     max-height: 4rem;
     overflow-y: auto;
     scrollbar-width: none;
+    position: relative;
 }
 
 input[type="number"]::-webkit-inner-spin-button,
@@ -222,10 +316,12 @@ input[type="number"] {
 .product-cart__wrapper {
     display: flex;
     width: 100%;
-    height: 80%;
+    height: 88%;
     flex-flow: column nowrap;
     align-items: center;
+    gap: 1rem;
 }
+
 .product-cart__container {
     display: flex;
     overflow-y: auto;
@@ -234,13 +330,321 @@ input[type="number"] {
     width: 100%;
     flex-flow: column nowrap;
     align-items: center;
+    position: relative;
 }
+.product-cart__wrapper:before,
+.product-cart__wrapper:after {
+    content: '';
+    position: absolute;
+    left: 0;
+    width: 100%;
+    z-index: 10;
+    height: 50px;
+}
+.product-cart__wrapper:after {
+    bottom: 5.8rem;
+    background: linear-gradient(to top,#fff 20%, transparent 80%);
+}
+.product-cart__wrapper:before {
+    top: 3.9rem;
+    background: linear-gradient(to bottom,#fff 20%, transparent 80%);
+}
+
+.product-container__in-cart-button {
+    border: none;
+    font-style: inherit;
+    margin: 0;
+    padding: 0;
+    background-color: transparent;
+    font-size: medium;
+    position: absolute;
+    bottom: 0.5rem;
+    left: 0;
+    transition: all .3s ease;
+}
+.product-container__in-cart-button:hover {
+    color: royalblue;
+}
+
 
 .admin-product-container {
     position: relative;
 }
 .admin-product-container__edit-button-form {
     position: absolute;
-    top: 10px;
-    right: 10px;
+    top: .5rem;
+    left: 25rem;
+}
+
+.admin-product-container__create-button {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    border: none;
+    font-size: medium;
+    transition: all .3s ease;
+}
+
+.admin-product-container__create-button:hover {
+    color: royalblue;
+}
+
+.product-container__price {
+    position: absolute;
+    bottom: 0.5rem;
+    right: 2rem;
+    font-weight: bold;
+}
+
+.product-cart__make-order-button {
+    border: 2px solid black;
+    font-style: inherit;
+    margin: 0;
+    padding: 0 5px;
+    background-color: transparent;
+    font-size: large;
+    transition: all .3s ease;
+}
+.product-cart__make-order-button:hover {    
+    color: royalblue;
+    border-color: royalblue;
+}
+
+.product-cart__total-price {
+    font-size: large;
+}
+.product-cart__total-price span {
+    font-weight: bold;
+}
+
+.cart-item__delete-button {
+    border: none;
+    font-style: inherit;
+    margin: 0 5px;
+    padding: 0;
+    background-color: transparent;
+    transition: all .3s ease;
+    font-size: large;
+}
+.cart-item__delete-button:hover {
+    color: crimson;
+}
+
+.profile {
+    margin-left: 4rem;
+    width: 20rem;
+}
+
+.profile * {
+    margin-bottom: 3rem;
+    display: inline-block;
+}
+
+.account-order-list-link, 
+.account-admin-panel-link {   
+    margin-left: 3rem;
+    transition: all .3s ease;
+}
+.account-order-list-link:hover,
+.account-admin-panel-link:hover {
+   color: royalblue;
+}
+
+.account-order-list-link:hover::after,
+.account-admin-panel-link:hover::after,
+.account-order-list-link:hover::before,
+.account-admin-panel-link:hover::before {
+    background-color: royalblue;
+}
+
+.order-list {
+    margin-left: 4rem;
+}
+
+.order__delete-button {
+    position: relative;
+    border: none;
+    font-style: inherit;
+    font-size: medium;
+    background-color: transparent;
+    transition: all .3s ease;
+    padding: 0;
+}
+.order__delete-button:hover {
+    color: crimson;
+}
+.order__delete-button:hover::after,
+.order__delete-button:hover::before {
+    background-color: crimson;
+}
+
+.back-link {
+    transition: all .3s ease;
+    position: relative;
+}
+.back-link:hover {
+    color: crimson;
+}
+.back-link::before {
+    display: block;
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 0;
+    background-color: black;
+    transition: all .3s ease-in-out, left .3s ease-in-out;
+    right: 0;
+    bottom: 0;
+}
+.back-link::after {
+    display: block;
+    position: absolute;
+    content: "";
+    height: 2px;
+    width: 0;
+    background-color: black;
+    transition: all .3s ease-in-out;
+    right: 0;
+    top: 0;
+    background-color: black;
+}
+.back-link:hover::before,
+.back-link:hover::after {
+    width: 100%;
+    right: 0;
+    background-color: crimson;
+}
+
+.order-list-back-link {
+    position: absolute;
+    top: 7rem;
+    left: 20rem;
+}
+
+.admin-panel {
+    width: 20rem;
+    margin: 4rem;
+}
+.admin-panel * {
+    margin-bottom: 3rem;
+    display: inline-block;
+}
+
+.products-edit-link,
+.admin-panel:nth-child(2) {
+    margin-left: 3rem;
+    transition: all .3s ease;
+}
+.products-edit-link:hover,
+.admin-panel:nth-child(2):hover {
+   color: royalblue;
+}
+
+.products-edit-link:hover::after,
+.admin-panel:nth-child(2):hover::after,
+.products-edit-link:hover::before,
+.admin-panel:nth-child(2):hover::before {
+    background-color: royalblue;
+}
+
+.create-or-edit-product-back-link,
+.products-list-back-link {
+    position: absolute;
+    top: 7rem;
+    left: 20rem;
+}
+
+.admin-product-container__create-button,
+.admin-product-container__edit-button,
+.admin-product-container__delete-button {
+    background-color: transparent;
+    padding: 0;
+    margin: 0;
+    font-family: inherit;
+    border: none;
+    font-size: medium;
+    transition: all .3s ease;
+}
+.admin-product-container__create-button:hover,
+.admin-product-container__edit-button:hover {
+    color: royalblue;
+}
+.admin-product-container__delete-button:hover {
+    color: crimson;
+}
+
+.admin-product-container__item {
+    margin-bottom: 2rem;
+}
+.admin-product-container__img{
+    max-height: 75px;
+}
+
+.products-list-clear {
+    position: absolute;
+    top: 7rem;
+    left: 37rem;
+    transition: all .3s ease;
+}
+.products-list-clear:hover {
+    color: crimson;
+}
+.products-list-clear:hover::before,
+.products-list-clear:hover::after {
+    background-color: crimson;
+}
+
+.create-or-edit-form {
+    display: flex;
+    flex-flow: column nowrap;
+    width: 20rem;
+    margin-top: 5rem;
+    margin-left: 4rem;
+
+}
+.create-or-edit-form input,
+.create-or-edit-form select{
+    font-family: inherit;
+    margin-bottom: 1rem;
+}
+
+.admin-product-container__item {
+    display: flex;
+    margin-left: 4rem;
+    flex-flow: column nowrap;
+    gap: 1rem;
+    border: 2px solid black;
+    max-width: 40rem;
+}
+
+.login-block,
+.register-block {
+    margin-left: 4rem;
+}
+
+.login-block__form,
+.register-block__form {
+    margin-left: 2rem;
+}
+
+.login-block__form input,
+.register-block__form input {
+    font-family: inherit;
+    margin-bottom: 1rem;
+}
+
+.login-submit,
+.register-submit {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: medium;
+    transition: all .3s ease;
+    font-weight: bold;
+}
+
+.login-submit:hover,
+.register-submit:hover {
+    color: royalblue;
 }

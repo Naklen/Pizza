@@ -12,7 +12,7 @@ namespace Pizza.ViewModels
         [Display(Name = "Имя")]
         public string UserName { get; set; }
 
-        [Required]
+        [Required]        
         [Display(Name = "Email")]
         public string Email { get; set; }
 

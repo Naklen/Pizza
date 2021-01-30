@@ -13,16 +13,15 @@
         <div class="header__login">
             @if (User.Identity.IsAuthenticated)
             {
-                <a asp-controller="Account" asp-action="Profile" class="header__account-name">@User.Identity.Name</a>
-
-                <form method="post" asp-controller="Account" asp-action="Logout">
-                    <input type="submit" value="Выход" />
+                <a asp-controller="Account" asp-action="Profile" class="header__account-name animated-bottom-border">@User.Identity.Name</a>
+                <form method="post" asp-controller="Account" asp-action="Logout" class="logout-form animated-bottom-border">
+                    <input type="submit" value="Выход" class="logout-form__button animated-bottom-border"/>
                 </form>
             }
             else
             {
-                <a asp-controller="Account" asp-action="Login">Вход</a>
-                <a asp-controller="Account" asp-action="Register">Регистрация</a>
+                <a asp-controller="Account" asp-action="Login" class="header__login-link animated-bottom-border">Вход</a><br />
+                <a asp-controller="Account" asp-action="Register" class="header__reg-link animated-bottom-border">Регистрация</a>
             }
         </div>
     </header>

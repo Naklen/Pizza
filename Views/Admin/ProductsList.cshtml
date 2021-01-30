@@ -7,15 +7,16 @@
         <div class="admin-product-container__item">
             <span>Имя: @product.Name</span>
             <span>Категория: @product.Category</span>
-            <span><br />Описание: @product.Description</span>
-            <span>Стоимость: @product.Price</span>
+            <span>Описание: @product.Description</span>
+            <span>Стоимость: @product.Price</span>            
+            <img src="@product.Image.FileName" alt="No image" class="admin-product-container__img"/>
             <form asp-controller="Admin" asp-action="CreateOrEditProduct" method="post">
                 <input type="hidden" name="ProductId" value="@product.ProductId" />
                 <input type="hidden" name="Name" value="@product.Name" />
                 <input type="hidden" name="Category" value="@product.Category" />
                 <input type="hidden" name="Description" value="@product.Description" />
                 <input type="hidden" name="Price" value="@product.Price" />
-                <input type="submit" name="name" value="Редактировать" class="admin-product-container__edit-button"/>
+                <input type="submit" name="name" value="Редактировать" class="admin-product-container__edit-button animated-bottom-border"/>
             </form>
              <form asp-controller="Admin" asp-action="DeleteProduct" method="post">
                 <input type="hidden" name="ProductId" value="@product.ProductId" />
@@ -23,7 +24,7 @@
                 <input type="hidden" name="Category" value="@product.Category" />
                 <input type="hidden" name="Description" value="@product.Description" />
                 <input type="hidden" name="Price" value="@product.Price" />
-                <input type="submit" name="name" value="Удалить" class="admin-product-container__delete-button"/>
+                <input type="submit" name="name" value="Удалить" class="admin-product-container__delete-button animated-bottom-border"/>
             </form>
         </div>
     }
@@ -33,6 +34,9 @@
         <input type="hidden" name="Category" value="Pizza" />
         <input type="hidden" name="Description" value="Введите описание" />
         <input type="hidden" name="Price" value="0" />
-        <input type="submit" name="name" value="Создать новый товар" class="admin-product-container__edit-button"/>
+        <input type="submit" name="name" value="Создать новый товар" class="admin-product-container__create-button animated-bottom-border"/>
     </form>
 </div>
+
+<a asp-controller="Admin" asp-action="Index" class="products-list-back-link back-link">Назад</a>
+<a asp-controller="Admin" asp-action="ClearProductList" class="products-list-clear animated-bottom-border">Очистить список</a>
