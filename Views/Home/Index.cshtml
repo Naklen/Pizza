@@ -14,125 +14,127 @@
         <h2 class="category-container__header">Пицца</h2>
         @foreach (var p in Model.Where(p => p.Category == "Pizza").OrderByDescending(p => p.ProductId))
         {
-    <section id="@p.ProductId" class="category-container__item product-container">
-        @{
-            string imgPath = p.ImagePath;
-            imgPath ??= "/img/placeholder.webp";
-            string alt = "Пицца " + p.Name;
-        }
-        <img src=@imgPath alt="@alt" class="product-container__img" />
-        <h3 class="product-container__header">@p.Name</h3>
-        <p class="product-container__descr">@p.Description</p>        
-            <div class="product-container__quantity quantity-block">
-                <input type="hidden" name="ProductId" value="@p.ProductId" />
-                <input type="button" value="&ndash;"class="quantity-block__arrow-minus">
-                <input class="quantity-block__num" type="number" value="1" readonly name="Quantity"/>
-                <input type="button" value="+" class="quantity-block__arrow-plus">
-            </div>
-            <input type="button" value="В корзину" class="product-container__in-cart-button"/>        
-        @{ string priceLabel = p.Price + " руб"; }
-        <span class="product-container__price">@priceLabel</span>
-    </section>
+            <section id="@p.ProductId" class="category-container__item product-container">
+                @{
+                    string imgPath = p.ImagePath;
+                    imgPath ??= "/img/placeholder.webp";
+                    string alt = "Пицца " + p.Name;
+                }
+                <div class="product-container__img-wrapper">
+                    <img src=@imgPath alt="@alt" class="product-container__img" />
+                </div>
+                <h3 class="product-container__header">@p.Name</h3>
+                <p class="product-container__descr">@p.Description</p>
+                <div class="product-container__quantity quantity-block">
+                    <input type="hidden" name="ProductId" value="@p.ProductId" />
+                    <input type="button" value="&ndash;" class="quantity-block__arrow-minus">
+                    <input class="quantity-block__num" type="number" value="1" readonly name="Quantity" />
+                    <input type="button" value="+" class="quantity-block__arrow-plus">
+                </div>
+                <input type="button" value="В корзину" class="product-container__in-cart-button" />
+                @{ string priceLabel = p.Price + " руб"; }
+                <span class="product-container__price">@priceLabel</span>
+            </section>
         }
     </section>
     <section class="products-container__drink category-container">
         <h2 class="category-container__header">Напитки</h2>
         @foreach (var p in Model.Where(p => p.Category == "Drink").OrderByDescending(p => p.ProductId))
         {
-    <section id="@p.ProductId" class="category-container__item product-container">
-        @{
-            string imgPath = p.ImagePath;
-            imgPath ??= "/img/placeholder.webp";
-            string alt = "Напиток " + p.Name;
-        }
-        <img src=@imgPath alt="@alt" class="product-container__img" />
-        <h3 class="product-container__header">@p.Name</h3>
-        <p class="product-container__descr">@p.Description</p>        
-            <div class="product-container__quantity quantity-block">
-                <input type="hidden" name="ProductId" value="@p.ProductId" />
-                <input type="button" value="&ndash;" class="quantity-block__arrow-minus">
-                <input class="quantity-block__num" type="number" value="1" readonly name="Quantity" />
-                <input type="button" value="+" class="quantity-block__arrow-plus">
-            </div>
-            <input type="button" value="В корзину" class="product-container__in-cart-button" />        
-        @{ string priceLabel = p.Price + " руб"; }
-        <span class="product-container__price">@priceLabel</span>
-    </section>
+            <section id="@p.ProductId" class="category-container__item product-container">
+                @{
+                    string imgPath = p.ImagePath;
+                    imgPath ??= "/img/placeholder.webp";
+                    string alt = "Напиток " + p.Name;
+                }
+                <img src=@imgPath alt="@alt" class="product-container__img" />
+                <h3 class="product-container__header">@p.Name</h3>
+                <p class="product-container__descr">@p.Description</p>
+                <div class="product-container__quantity quantity-block">
+                    <input type="hidden" name="ProductId" value="@p.ProductId" />
+                    <input type="button" value="&ndash;" class="quantity-block__arrow-minus">
+                    <input class="quantity-block__num" type="number" value="1" readonly name="Quantity" />
+                    <input type="button" value="+" class="quantity-block__arrow-plus">
+                </div>
+                <input type="button" value="В корзину" class="product-container__in-cart-button" />
+                @{ string priceLabel = p.Price + " руб"; }
+                <span class="product-container__price">@priceLabel</span>
+            </section>
         }
     </section>
     <section class="products-container__snack category-container">
         <h2 class="category-container__header">Закуски</h2>
         @foreach (var p in Model.Where(p => p.Category == "Snack").OrderByDescending(p => p.ProductId))
         {
-    <section id="@p.ProductId" class="category-container__item product-container">
-        @{
-            string imgPath = p.ImagePath;
-            imgPath ??= "/img/placeholder.webp";
-            string alt = "Закуска " + p.Name;
-        }
-        <img src=@imgPath alt="@alt" class="product-container__img" />
-        <h3 class="product-container__header">@p.Name</h3>
-        <p class="product-container__descr">@p.Description</p>
-                    <div class="product-container__quantity quantity-block">
-                <input type="hidden" name="ProductId" value="@p.ProductId" />
-                <input type="button" value="&ndash;" class="quantity-block__arrow-minus">
-                <input class="quantity-block__num" type="number" value="1" readonly name="Quantity" />
-                <input type="button" value="+" class="quantity-block__arrow-plus">
-            </div>
-            <input type="button" value="В корзину" class="product-container__in-cart-button" />        
-        @{ string priceLabel = p.Price + " руб"; }
-        <span class="product-container__price">@priceLabel</span>
-    </section>
+            <section id="@p.ProductId" class="category-container__item product-container">
+                @{
+                    string imgPath = p.ImagePath;
+                    imgPath ??= "/img/placeholder.webp";
+                    string alt = "Закуска " + p.Name;
+                }
+                <img src=@imgPath alt="@alt" class="product-container__img" />
+                <h3 class="product-container__header">@p.Name</h3>
+                <p class="product-container__descr">@p.Description</p>
+                <div class="product-container__quantity quantity-block">
+                    <input type="hidden" name="ProductId" value="@p.ProductId" />
+                    <input type="button" value="&ndash;" class="quantity-block__arrow-minus">
+                    <input class="quantity-block__num" type="number" value="1" readonly name="Quantity" />
+                    <input type="button" value="+" class="quantity-block__arrow-plus">
+                </div>
+                <input type="button" value="В корзину" class="product-container__in-cart-button" />
+                @{ string priceLabel = p.Price + " руб"; }
+                <span class="product-container__price">@priceLabel</span>
+            </section>
         }
     </section>
     <section class="products-container__salad category-container">
         <h2 class="category-container__header">Салаты</h2>
         @foreach (var p in Model.Where(p => p.Category == "Salad").OrderByDescending(p => p.ProductId))
         {
-    <section id="@p.ProductId" class="category-container__item product-container">
-        @{
-            string imgPath = p.ImagePath;
-            imgPath ??= "/img/placeholder.webp";
-            string alt = "Салат " + p.Name;
-        }
-        <img src=@imgPath alt="@alt" class="product-container__img" />
-        <h3 class="product-container__header">@p.Name</h3>
-        <p class="product-container__descr">@p.Description</p>        
-            <div class="product-container__quantity quantity-block">
-                <input type="hidden" name="ProductId" value="@p.ProductId" />
-                <input type="button" value="&ndash;" class="quantity-block__arrow-minus">
-                <input class="quantity-block__num" type="number" value="1" readonly name="Quantity" />
-                <input type="button" value="+" class="quantity-block__arrow-plus">
-            </div>
-            <input type="button" value="В корзину" class="product-container__in-cart-button" />        
-        @{ string priceLabel = p.Price + " руб"; }
-        <span class="product-container__price">@priceLabel</span>
-    </section>
+            <section id="@p.ProductId" class="category-container__item product-container">
+                @{
+                    string imgPath = p.ImagePath;
+                    imgPath ??= "/img/placeholder.webp";
+                    string alt = "Салат " + p.Name;
+                }
+                <img src=@imgPath alt="@alt" class="product-container__img" />
+                <h3 class="product-container__header">@p.Name</h3>
+                <p class="product-container__descr">@p.Description</p>
+                <div class="product-container__quantity quantity-block">
+                    <input type="hidden" name="ProductId" value="@p.ProductId" />
+                    <input type="button" value="&ndash;" class="quantity-block__arrow-minus">
+                    <input class="quantity-block__num" type="number" value="1" readonly name="Quantity" />
+                    <input type="button" value="+" class="quantity-block__arrow-plus">
+                </div>
+                <input type="button" value="В корзину" class="product-container__in-cart-button" />
+                @{ string priceLabel = p.Price + " руб"; }
+                <span class="product-container__price">@priceLabel</span>
+            </section>
         }
     </section>
     <section class="products-container__kombo category-container">
         <h2 class="category-container__header">Комбо-наборы</h2>
         @foreach (var p in Model.Where(p => p.Category == "Kombo").OrderByDescending(p => p.ProductId))
         {
-        <section id="@p.ProductId" class="category-container__item product-container">
-        @{
-            string imgPath = p.ImagePath;
-            imgPath ??= "/img/placeholder.webp";
-            string alt = "Комбо " + p.Name;
-        }
-        <img src=@imgPath alt="@alt" class="product-container__img" />
-        <h3 class="product-container__header">@p.Name</h3>
-        <p class="product-container__descr">@p.Description</p>        
-        <div class="product-container__quantity quantity-block">
-            <input type="hidden" name="ProductId" value="@p.ProductId" />
-            <input type="button" value="&ndash;" class="quantity-block__arrow-minus">
-            <input class="quantity-block__num" type="number" value="1" readonly name="Quantity" />
-            <input type="button" value="+" class="quantity-block__arrow-plus">
-        </div>
-        <input type="button" value="В корзину" class="product-container__in-cart-button" />        
-        @{ string priceLabel = p.Price + " руб"; }
-        <span class="product-container__price">@priceLabel</span>
-        </section>
+            <section id="@p.ProductId" class="category-container__item product-container">
+                @{
+                    string imgPath = p.ImagePath;
+                    imgPath ??= "/img/placeholder.webp";
+                    string alt = "Комбо " + p.Name;
+                }
+                <img src=@imgPath alt="@alt" class="product-container__img" />
+                <h3 class="product-container__header">@p.Name</h3>
+                <p class="product-container__descr">@p.Description</p>
+                <div class="product-container__quantity quantity-block">
+                    <input type="hidden" name="ProductId" value="@p.ProductId" />
+                    <input type="button" value="&ndash;" class="quantity-block__arrow-minus">
+                    <input class="quantity-block__num" type="number" value="1" readonly name="Quantity" />
+                    <input type="button" value="+" class="quantity-block__arrow-plus">
+                </div>
+                <input type="button" value="В корзину" class="product-container__in-cart-button" />
+                @{ string priceLabel = p.Price + " руб"; }
+                <span class="product-container__price">@priceLabel</span>
+            </section>
         }
     </section>
 </div>
@@ -140,6 +142,8 @@
     <h2>Корзина</h2>
     <div class="product-cart__wrapper">
         @await Component.InvokeAsync("ProductCart")
-    </div>    
+    </div>
 </aside>
 <script src="~/js/number.js"></script>
+<script src="~/js/addToCart.js"></script>
+<script src="~/js/deleteFromCartAndMakeOrder.js"></script>

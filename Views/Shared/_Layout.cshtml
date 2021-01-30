@@ -13,7 +13,7 @@
         <div class="header__login">
             @if (User.Identity.IsAuthenticated)
             {
-                <p>@User.Identity.Name</p>
+                <a asp-controller="Account">@User.Identity.Name</a>
 
                 <form method="post" asp-controller="Account" asp-action="Logout">
                     <input type="submit" value="Выход" />
@@ -28,8 +28,6 @@
     </header>
     <main role="main" class="main">
         @RenderBody()
-    </main>
-    <script src="~/js/addToCart.js"></script>
-    <script src="~/js/deleteFromCartAndMakeOrder.js"></script>
+    </main>    
 </body>
 </html>

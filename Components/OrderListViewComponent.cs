@@ -8,27 +8,26 @@ using System.Threading.Tasks;
 
 namespace Pizza.Components
 {
-    public class ProductCartViewComponent : ViewComponent
-    {        
+    public class OrderListViewComponent : ViewComponent
+    {
         PizzaContext db;
         UserManager<User> userManager;
 
-        public ProductCartViewComponent(PizzaContext context, UserManager<User> userManager)
+        public OrderListViewComponent(PizzaContext context, UserManager<User> userManager)
         {
             db = context;
             this.userManager = userManager;
         }
 
         public IViewComponentResult Invoke()
-        {            
-            if (User.Identity.Name != null)
+        {
+            List<Order> orders = null;
+            if (User.Identity.IsAuthenticated)
             {
                 var user = db.Users.Find(userManager.GetUserId((System.Security.Claims.ClaimsPrincipal)User));
-                if (db.Orders.Any(o => o.User == user && o.IsActive))
-                        return View((db.Orders.Where(o => o.User == user && o.IsActive).FirstOrDefault(), db.Products, db.OrderItems));
+                orders = db.Orders.Where(o => o.User == user && o.IsClosed).ToList();
             }
-            Order nullOrder = null;            
-            return View((nullOrder, db.Products, db.OrderItems));
+            return View(orders);
         }
     }
 }

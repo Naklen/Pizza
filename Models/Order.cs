@@ -18,5 +18,6 @@ namespace Pizza.Models
         public uint TotalPrice { get; set; }
         public bool IsClosed { get; set; }
         public bool IsActive { get; set; }
+        public DateTime CloseDateTime { get; set; }
     }
 }

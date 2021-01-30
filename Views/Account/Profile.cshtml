@@ -1,4 +1,11 @@
-﻿@model User
+﻿@model (User, bool)
 
 <h2>Личный кабинет</h2>
-<span>Здравствуйте, @Model.UserName</span>
+<span>Здравствуйте, @Model.Item1.UserName</span>
+
+<a asp-controller="Account" asp-action="OrderList">Список заказов</a>
+
+@if (Model.Item2)
+{
+    <a asp-controller="Admin" asp-action="Index">Панель администратора</a>
+}

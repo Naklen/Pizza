@@ -14,19 +14,47 @@ namespace Pizza.Controllers
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
+        private readonly RoleManager<IdentityRole> roleManager;
         PizzaContext db;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, PizzaContext context)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, RoleManager<IdentityRole> roleManager, PizzaContext context)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            this.roleManager = roleManager;
             db = context;
         }
 
         [Authorize]
-        public IActionResult Profile()
+        public async Task<IActionResult> Profile()
         {
-            return View(db.Users.Find(userManager.GetUserId(User)));
+            var user = db.Users.Find(userManager.GetUserId(User));
+            var roles = await userManager.GetRolesAsync(user);
+            return View((user, roles.Any(r => r =="admin")));
+        }
+
+        [Authorize]
+        public IActionResult OrderList()
+        {
+            return View();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public void DeleteOrder([FromBody] DeleteOrderViewModel model)
+        {            
+            var order = db.Orders.Find(model.OrderId);
+            if (order != null && order.IsClosed)
+            {
+                db.Orders.Remove(order);
+            }
+            db.SaveChanges();
+        }
+
+        [HttpGet]
+        public IActionResult GetOrderListView()
+        {
+            return ViewComponent("OrderList");
         }
 
         [HttpGet]

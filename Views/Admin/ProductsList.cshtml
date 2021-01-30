@@ -1,0 +1,22 @@
+﻿@model IEnumerable<Pizza.ViewModels.ProductViewModel>
+
+    <div class="admin-product-container">
+        <h2>Список товаров</h2>
+        @foreach (var product in Model)
+        {
+            <div class="admin-product-container__item">                
+                <span>Имя: @product.Name</span>
+                <span>Категория: @product.Category</span>
+                <span><br />Описание: @product.Description</span>
+                <span>Стоимость: @product.Price</span>                
+                <form asp-controller="Admin" asp-action="EditProduct" method="post">
+                    <input type="hidden" name="ProductId" value="@product.ProductId" />
+                    <input type="hidden" name="Name" value="@product.Name" />
+                    <input type="hidden" name="Category" value="@product.Category" />
+                    <input type="hidden" name="Description" value="@product.Description" />
+                    <input type="hidden" name="Price" value="@product.Price" />                    
+                    <input type="submit" name="name" value="Редактировать" />
+                </form>
+            </div>
+        }
+    </div>

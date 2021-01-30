@@ -132,8 +132,14 @@ body {
 .product-container {
     width: 25%;
     overflow: hidden;
+    height: 30rem;
 }
 
+.product-container__img-wrapper {
+    width: 100%;
+    height: 60%;
+    max-height: 18rem;
+}
 .product-container__img {
     width: 100%;
 }
@@ -146,6 +152,9 @@ body {
     /* margin-left: 20px; */
     color: gray;
     font-weight: lighter;
+    max-height: 4rem;
+    overflow-y: auto;
+    scrollbar-width: none;
 }
 
 input[type="number"]::-webkit-inner-spin-button,

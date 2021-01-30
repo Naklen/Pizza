@@ -1,0 +1,16 @@
+﻿@model IEnumerable<Order>
+
+@if (Model != null)
+{
+    <div class="order-list__list">
+        @foreach (var order in Model)
+        {
+            <div class="order-list__item order">
+                <h3>Заказ от @order.CloseDateTime.ToString("ddd, dd MMMM yyyy") </h3>
+
+                <span>Стоимость: @order.TotalPrice руб.</span>
+            </div>
+            <button type="button" id="@order.OrderId" class="order__delete-button">Удалить из истории</button>
+        }
+    </div>
+}

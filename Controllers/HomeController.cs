@@ -42,7 +42,6 @@ namespace Pizza.Controllers
             var user = db.Users.Find(userManager.GetUserId(User));
             var order = db.Orders.Where(o => o.IsActive && o.User == user).FirstOrDefault();
             order ??= new Order { User = user, OrderItems = new List<OrderItem>(), IsClosed = false, TotalPrice = 0, IsActive = true };
-            //order.OrderItems.Exists(oi => oi.Product == newItem.Product)
             if (db.OrderItems.Any(oi => oi.Product == newItem.Product && oi.Order == order))
             {
                 var item = db.OrderItems.Where(oi => oi.Product == newItem.Product && oi.Order == order).FirstOrDefault();
@@ -98,6 +97,8 @@ namespace Pizza.Controllers
             {
                 order.IsActive = false;
                 order.IsClosed = true;
+                order.CloseDateTime = new DateTime();
+                order.CloseDateTime = DateTime.Now;
                 db.Orders.Update(order);
                 db.SaveChanges();
             }
