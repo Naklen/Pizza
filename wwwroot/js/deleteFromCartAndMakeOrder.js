@@ -19,5 +19,18 @@ wrapper.addEventListener('click', async (e) => {
         elem.innerHTML = str;
         container = document.querySelector('.product-cart__container');
         container.scrollTo(0, scrollTop);
+    }    
+    if (e.target.classList[0] === "product-cart__make-order-button") {
+        await fetch('/Home/MakeOrder', {
+            method: 'POST'
+        });
+        let url = await fetch('/Home/GetCartView', {
+            method: 'GET'
+        });
+        let res = await (await fetch(url.url)).body.getReader().read();
+        let str = new TextDecoder("utf-8").decode(res.value);
+        let elem = document.querySelector('.product-cart__wrapper');
+        elem.innerHTML = str;
+        elem.getElementsByClassName("product-cart__container")[0].innerHTML = "Спасибо за заказ!<br />Хотите сделать новый? Просто добавте товары в корзину";
     }
 });

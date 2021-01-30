@@ -14,17 +14,19 @@ namespace Pizza.Controllers
     {
         private readonly UserManager<User> userManager;
         private readonly SignInManager<User> signInManager;
+        PizzaContext db;
 
-        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager)
+        public AccountController(UserManager<User> userManager, SignInManager<User> signInManager, PizzaContext context)
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
+            db = context;
         }
 
         [Authorize]
-        public async Task<IActionResult> Profile()
+        public IActionResult Profile()
         {
-            return View(await userManager.FindByNameAsync(User.Identity.Name));
+            return View(db.Users.Find(userManager.GetUserId(User)));
         }
 
         [HttpGet]

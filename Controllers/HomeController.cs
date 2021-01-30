@@ -79,9 +79,28 @@ namespace Pizza.Controllers
             var orderItem = db.OrderItems.Find(model.OrderItemId);
             var order = db.Orders.Find(orderItem.OrderId);
             order.TotalPrice -= (uint)(db.Products.Find(orderItem.ProductId).Price * orderItem.Quantity);
+            db.OrderItems.Remove(orderItem);
             db.Orders.Update(order);
-            db.OrderItems.Remove(orderItem);            
+            if (!db.OrderItems.Any(oi => oi.OrderId == orderItem.OrderId))
+            {
+                db.Orders.Remove(order);
+            }
             db.SaveChanges();
+        }
+
+        [Authorize]
+        [HttpPost]
+        public void MakeOrder()
+        {
+            var user = db.Users.Find(userManager.GetUserId(User));
+            var order = db.Orders.FirstOrDefault(o => o.User == user && o.IsActive);
+            if (order != null)
+            {
+                order.IsActive = false;
+                order.IsClosed = true;
+                db.Orders.Update(order);
+                db.SaveChanges();
+            }
         }
 
         [HttpGet]
