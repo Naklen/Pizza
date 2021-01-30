@@ -3,4 +3,4 @@ obj/
 Migrations/
 .vs/
 Pizza.csproj.user
-img/uploaded/*
+wwwroot/img/uploaded/*
