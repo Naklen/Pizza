@@ -9,11 +9,11 @@
 <body>
     <header class="header">
         <img src="#" alt="" class="header__logo" />
-        <h1 class="header__title">Pizza</h1>
+        <h1 class="header__title"><a asp-controller="Home" asp-action="Index">Pizza</a></h1>
         <div class="header__login">
             @if (User.Identity.IsAuthenticated)
             {
-                <a asp-controller="Account">@User.Identity.Name</a>
+                <a asp-controller="Account" asp-action="Profile" class="header__account-name">@User.Identity.Name</a>
 
                 <form method="post" asp-controller="Account" asp-action="Logout">
                     <input type="submit" value="Выход" />

@@ -1,22 +1,38 @@
 ﻿@model IEnumerable<Pizza.ViewModels.ProductViewModel>
 
-    <div class="admin-product-container">
-        <h2>Список товаров</h2>
-        @foreach (var product in Model)
-        {
-            <div class="admin-product-container__item">                
-                <span>Имя: @product.Name</span>
-                <span>Категория: @product.Category</span>
-                <span><br />Описание: @product.Description</span>
-                <span>Стоимость: @product.Price</span>                
-                <form asp-controller="Admin" asp-action="EditProduct" method="post">
-                    <input type="hidden" name="ProductId" value="@product.ProductId" />
-                    <input type="hidden" name="Name" value="@product.Name" />
-                    <input type="hidden" name="Category" value="@product.Category" />
-                    <input type="hidden" name="Description" value="@product.Description" />
-                    <input type="hidden" name="Price" value="@product.Price" />                    
-                    <input type="submit" name="name" value="Редактировать" />
-                </form>
-            </div>
-        }
-    </div>
+<div class="admin-product-container">
+    <h2>Список товаров</h2>
+    @foreach (var product in Model)
+    {
+        <div class="admin-product-container__item">
+            <span>Имя: @product.Name</span>
+            <span>Категория: @product.Category</span>
+            <span><br />Описание: @product.Description</span>
+            <span>Стоимость: @product.Price</span>
+            <form asp-controller="Admin" asp-action="CreateOrEditProduct" method="post">
+                <input type="hidden" name="ProductId" value="@product.ProductId" />
+                <input type="hidden" name="Name" value="@product.Name" />
+                <input type="hidden" name="Category" value="@product.Category" />
+                <input type="hidden" name="Description" value="@product.Description" />
+                <input type="hidden" name="Price" value="@product.Price" />
+                <input type="submit" name="name" value="Редактировать" class="admin-product-container__edit-button"/>
+            </form>
+             <form asp-controller="Admin" asp-action="DeleteProduct" method="post">
+                <input type="hidden" name="ProductId" value="@product.ProductId" />
+                <input type="hidden" name="Name" value="@product.Name" />
+                <input type="hidden" name="Category" value="@product.Category" />
+                <input type="hidden" name="Description" value="@product.Description" />
+                <input type="hidden" name="Price" value="@product.Price" />
+                <input type="submit" name="name" value="Удалить" class="admin-product-container__delete-button"/>
+            </form>
+        </div>
+    }
+    <form asp-controller="Admin" asp-action="CreateOrEditProduct" method="post" class="admin-product-container__edit-button-form">
+        <input type="hidden" name="ProductId" value="-1"/>
+        <input type="hidden" name="Name" value="Новый товар" />
+        <input type="hidden" name="Category" value="Pizza" />
+        <input type="hidden" name="Description" value="Введите описание" />
+        <input type="hidden" name="Price" value="0" />
+        <input type="submit" name="name" value="Создать новый товар" class="admin-product-container__edit-button"/>
+    </form>
+</div>

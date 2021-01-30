@@ -40,10 +40,27 @@ namespace Pizza.Controllers
             return View(list);
         }
 
+
+
         [HttpPost]
-        public IActionResult EditProduct(ProductViewModel model)
+        public IActionResult CreateOrEditProduct(ProductViewModel model)
         {
             return View(model);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteProduct(ProductViewModel model)
+        {
+            var product = db.Products.Find(model.ProductId);
+            if (product != null)
+            {
+                if (product.ImagePath != null)
+                    if (System.IO.File.Exists(appEnvironment.WebRootPath + product.ImagePath))
+                        System.IO.File.Delete(appEnvironment.WebRootPath + product.ImagePath);
+                db.Remove(product);
+                db.SaveChanges();
+            }
+            return RedirectToAction("ProductsList", "Admin");
         }
 
         [HttpPost]
@@ -70,20 +87,40 @@ namespace Pizza.Controllers
                     if (product.ImagePath != null)                    
                         if (System.IO.File.Exists(appEnvironment.WebRootPath + product.ImagePath))                        
                             System.IO.File.Delete(appEnvironment.WebRootPath + product.ImagePath);                    
-                    product.ImagePath = path;
-                    db.Products.Update(product);
+                    product.ImagePath = path;                    
                 }
                 else
                 {
                     if (product.ImagePath != null)
                         if (System.IO.File.Exists(appEnvironment.WebRootPath + product.ImagePath))
                             System.IO.File.Delete(appEnvironment.WebRootPath + product.ImagePath);
-                    product.ImagePath = null;
-                    db.Products.Update(product);
+                    product.ImagePath = null;                    
                 }
+                db.Products.Update(product);
+            }
+            else
+            {
+                product = new Product
+                {
+                    Name = model.Name,
+                    Category = model.Category,
+                    Description = model.Description,
+                    Price = model.Price,
+                    ImagePath = null
+                };                
+                if (model.Image != null)
+                {
+                    var path = "/img/uploaded/" + model.Image.FileName;
+                    using (var fileStream = new FileStream(appEnvironment.WebRootPath + path, FileMode.Create))
+                    {
+                        await model.Image.CopyToAsync(fileStream);
+                    }                    
+                    product.ImagePath = path;                    
+                }
+                db.Products.Add(product);                
             }
             db.SaveChanges();
-            return RedirectToAction("ProductList", "Admin");
+            return RedirectToAction("ProductsList", "Admin");
         }
     }
 }

@@ -47,7 +47,9 @@
                     imgPath ??= "/img/placeholder.webp";
                     string alt = "Напиток " + p.Name;
                 }
-                <img src=@imgPath alt="@alt" class="product-container__img" />
+                <div class="product-container__img-wrapper">
+                    <img src=@imgPath alt="@alt" class="product-container__img" />
+                </div>
                 <h3 class="product-container__header">@p.Name</h3>
                 <p class="product-container__descr">@p.Description</p>
                 <div class="product-container__quantity quantity-block">
@@ -72,7 +74,9 @@
                     imgPath ??= "/img/placeholder.webp";
                     string alt = "Закуска " + p.Name;
                 }
-                <img src=@imgPath alt="@alt" class="product-container__img" />
+                <div class="product-container__img-wrapper">
+                    <img src=@imgPath alt="@alt" class="product-container__img" />
+                </div>
                 <h3 class="product-container__header">@p.Name</h3>
                 <p class="product-container__descr">@p.Description</p>
                 <div class="product-container__quantity quantity-block">
@@ -97,7 +101,9 @@
                     imgPath ??= "/img/placeholder.webp";
                     string alt = "Салат " + p.Name;
                 }
-                <img src=@imgPath alt="@alt" class="product-container__img" />
+                <div class="product-container__img-wrapper">
+                    <img src=@imgPath alt="@alt" class="product-container__img" />
+                </div>
                 <h3 class="product-container__header">@p.Name</h3>
                 <p class="product-container__descr">@p.Description</p>
                 <div class="product-container__quantity quantity-block">
@@ -122,7 +128,9 @@
                     imgPath ??= "/img/placeholder.webp";
                     string alt = "Комбо " + p.Name;
                 }
-                <img src=@imgPath alt="@alt" class="product-container__img" />
+                <div class="product-container__img-wrapper">
+                    <img src=@imgPath alt="@alt" class="product-container__img" />
+                </div>
                 <h3 class="product-container__header">@p.Name</h3>
                 <p class="product-container__descr">@p.Description</p>
                 <div class="product-container__quantity quantity-block">
