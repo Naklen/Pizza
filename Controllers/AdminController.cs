@@ -44,6 +44,11 @@ namespace Pizza.Controllers
 
         public IActionResult ClearProductList()
         {
+            foreach (var product in db.Products)
+            {
+                if (System.IO.File.Exists(appEnvironment.WebRootPath + product.ImagePath))
+                    System.IO.File.Delete(appEnvironment.WebRootPath + product.ImagePath);
+            }
             db.Products.RemoveRange(db.Products);
             db.SaveChanges();
             return RedirectToAction("ProductsList", "Admin");
