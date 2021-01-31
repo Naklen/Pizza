@@ -30,7 +30,7 @@ namespace Pizza
             Configuration.Bind("AdminAccount", new Admin());
             services.AddControllersWithViews();
             services.AddDbContext<PizzaContext>(options =>
-                options.UseSqlServer(Configuration.GetConnectionString("PizzaContext")));
+                options.UseSqlite(Configuration.GetConnectionString("PizzaContext")));
             services.AddIdentity<User, IdentityRole>(opts => {
                 opts.Password.RequiredLength = 5;   
                 opts.Password.RequireNonAlphanumeric = false;   

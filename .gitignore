@@ -3,4 +3,5 @@ obj/
 Migrations/
 .vs/
 Pizza.csproj.user
-wwwroot/img/uploaded/*
+Properties/PublishProfiles/
+pizzadb.sqlite
