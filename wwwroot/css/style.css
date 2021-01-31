@@ -240,7 +240,7 @@ animated-bottom-border {
 .product-container__img {
     width: 100%;
     max-height: 100%;
-    object-fit: cover;
+    object-fit: scale-down;
 }
 
 /* .product-container__header {
