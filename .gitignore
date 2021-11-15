@@ -4,4 +4,4 @@ Migrations/
 .vs/
 Pizza.csproj.user
 Properties/PublishProfiles/
-pizzadb.sqlite
+pizzadb.sqlite*

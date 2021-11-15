@@ -28,6 +28,7 @@ namespace Pizza
         public void ConfigureServices(IServiceCollection services)
         {
             Configuration.Bind("AdminAccount", new Admin());
+            Configuration.Bind("ManagerAccount", new Manager());
             services.AddControllersWithViews();
             services.AddDbContext<PizzaContext>(options =>
                 options.UseSqlite(Configuration.GetConnectionString("PizzaContext")));

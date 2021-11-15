@@ -17,6 +17,10 @@ namespace Pizza
             {
                 await roleManager.CreateAsync(new IdentityRole("user"));
             }
+            if (await roleManager.FindByNameAsync("manager") == null)
+            {
+                await roleManager.CreateAsync(new IdentityRole("manager"));
+            }
             var a = await userManager.FindByNameAsync(Admin.UserName);
             if (a == null)
             {
@@ -25,6 +29,16 @@ namespace Pizza
                 if (result.Succeeded)
                 {
                     await userManager.AddToRoleAsync(admin, "admin");
+                }
+            }
+            var m = await userManager.FindByNameAsync(Manager.UserName);
+            if (m == null)
+            {
+                User manager = new User { Email = Manager.Email, UserName = Manager.UserName, Address = null, Orders = null };
+                IdentityResult result = await userManager.CreateAsync(manager, Manager.Password);
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(manager, "manager");
                 }
             }
         }
