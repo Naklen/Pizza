@@ -1,13 +1,14 @@
-﻿@model IEnumerable<Order>
+﻿@model (List<Order>, List<OrderStatus>)
 
-@if (Model != null)
+@if (Model.Item1 != null)
 {
     <div class="order-list__list">
-        @foreach (var order in Model)
+        @foreach (var order in Model.Item1)
         {
             <div class="order-list__item order">
-                <h3>Заказ от @order.CloseDateTime.ToString("ddd, dd MMMM yyyy") </h3>
-
+                <h3>Заказ от @order.OrderTime.ToString("ddd, dd MMMM yyyy HH:mm") </h3>
+                <span>Статус: @Model.Item2.Find(os => os.StatusId == order.StatusId).Name</span>
+                <br />
                 <span>Стоимость: @order.TotalPrice руб.</span>
             </div>
             <button type="button" id="@order.OrderId" class="order__delete-button animated-bottom-border">Удалить из истории</button>

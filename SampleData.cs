@@ -250,8 +250,14 @@ namespace Pizza
                         ImagePath = null
                     }
                 );
-                context.SaveChanges();
             }
+            var statuses = new[] { "Не сделан", "Ожидает обработки", "Готовится", "Доставка", "Доставлено" };
+            for (var i = 0; i < statuses.Length; i++)
+            {
+                if (!context.OrderStatuses.Any(os => os.Name == statuses[i]))
+                    context.OrderStatuses.Add(new OrderStatus { StatusId = i + 1, Name = statuses[i] }) ;
+            }
+            context.SaveChanges();
         }
     }
 }

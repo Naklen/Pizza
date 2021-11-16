@@ -2,6 +2,8 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Pizza.Models;
+using Pizza.Service;
+using Pizza.Utils;
 using Pizza.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -30,7 +32,7 @@ namespace Pizza.Controllers
         {
             var user = db.Users.Find(userManager.GetUserId(User));
             var roles = await userManager.GetRolesAsync(user);
-            return View((user, roles.Any(r => r =="admin")));
+            return View((user, roles));
         }
 
         [Authorize]
@@ -44,7 +46,7 @@ namespace Pizza.Controllers
         public void DeleteOrder([FromBody] DeleteOrderViewModel model)
         {            
             var order = db.Orders.Find(model.OrderId);
-            if (order != null && order.IsClosed)
+            if (order != null)
             {
                 db.Orders.Remove(order);
             }

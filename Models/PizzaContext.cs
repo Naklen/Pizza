@@ -12,6 +12,7 @@ namespace Pizza.Models
         public DbSet<Product> Products { get; set; }        
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderItem> OrderItems { get; set; }
+        public DbSet<OrderStatus> OrderStatuses { get; set; }
 
         public PizzaContext(DbContextOptions<PizzaContext> options)
             : base(options)

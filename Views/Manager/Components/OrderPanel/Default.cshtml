@@ -1,0 +1,41 @@
+﻿@using Pizza.Utils
+
+@model (List<Order>, List<OrderItem>, List<OrderStatus>, List<Product>, List<User>)
+
+@if (Model.Item1 != null)
+{
+<div class="order-list__list">
+    @foreach (var order in Model.Item1)
+    {
+        <div class="order-list__item order">
+            <h3>Заказ от @order.OrderTime.ToString("ddd, dd MMMM yyyy HH:mm") </h3>
+            <span>Статус: @Model.Item3.Find(os => os.StatusId == order.StatusId).Name</span>
+            <br />
+            <details>
+                <summary>Содержание заказа</summary>
+                @foreach (var orderItem in Model.Item2.Where(oi => oi.OrderId == order.OrderId))
+                {
+                    <span>@Model.Item4.Find(p => p.ProductId == orderItem.ProductId).Name в количестве @orderItem.Quantity шт.</span>
+                    <br />
+                }
+            </details>
+            <span>Адрес доставки: @Model.Item5.Find(u => u == order.User).Address</span>
+            <br />
+            <span>Телефон заказчика: @Model.Item5.Find(u => u == order.User).PhoneNumber</span>
+            <br />
+        </div>
+        @if (order.StatusId == (int)OrderStatuses.Processing)
+        {
+            <button type="button" id="@order.OrderId" class="order__take-order animated-bottom-border">Принять заказ</button>
+        }
+        @if (order.StatusId == (int)OrderStatuses.Assembling)
+        {
+            <button type="button" id="@order.OrderId" class="order__send-order animated-bottom-border">Отправить заказ</button>
+        }
+        @if (order.StatusId == (int)OrderStatuses.Delivering)
+        {
+            <button type="button" id="@order.OrderId" class="order__complete-delivery animated-bottom-border">Доставка завершена</button>
+        }
+    }
+</div>
+}

@@ -31,6 +31,7 @@ wrapper.addEventListener('click', async (e) => {
         let str = new TextDecoder("utf-8").decode(res.value);
         let elem = document.querySelector('.product-cart__wrapper');
         elem.innerHTML = str;
-        elem.getElementsByClassName("product-cart__container")[0].innerHTML = " <br />Спасибо за заказ!<br />Хотите сделать новый? Просто добавте товары в корзину";
+        elem.getElementsByClassName("product-cart__container")[0].innerHTML = " <br />Спасибо за заказ!<br />Статус заказа можно увидеть в личном кабинете<br />"
+            + "<br />Хотите сделать новый? Просто добавте товары в корзину";
     }
 });

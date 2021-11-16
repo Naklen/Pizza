@@ -25,9 +25,9 @@ namespace Pizza.Components
             if (User.Identity.IsAuthenticated)
             {
                 var user = db.Users.Find(userManager.GetUserId((System.Security.Claims.ClaimsPrincipal)User));
-                orders = db.Orders.Where(o => o.User == user && o.IsClosed).ToList();
+                orders = db.Orders.Where(o => o.User == user && !o.IsActive).ToList();
             }
-            return View(orders);
+            return View((orders, db.OrderStatuses.ToList()));
         }
     }
 }

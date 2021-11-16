@@ -1,12 +1,20 @@
-﻿@model (User, bool)
+﻿@model (User, IList<string>)
 
 <div class="profile">
     <h2>Личный кабинет</h2>
     <span>Здравствуйте, @Model.Item1.UserName</span>
 
-    <a asp-controller="Account" asp-action="OrderList" class="account-order-list-link animated-bottom-border">К списоку заказов</a>
+    @if (Model.Item2.Contains("manager"))
+    {
+        <a asp-controller="Account" asp-action="OrderList" class="account-order-list-link animated-bottom-border">К личному списоку заказов</a>
+        <a asp-controller="Manager" asp-action="OrderPanel" class="manager-order-panel-link animated-bottom-border">К панели заказов заказов</a>
+    }
+    else
+    {
+        <a asp-controller="Account" asp-action="OrderList" class="account-order-list-link animated-bottom-border">К списоку заказов</a>
+    }
 
-    @if (Model.Item2)
+    @if (Model.Item2.Contains("admin"))
     {
         <a asp-controller="Admin" asp-action="Index" class="account-admin-panel-link animated-bottom-border">Перейти в панель администратора</a>
     }

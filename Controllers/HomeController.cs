@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using Pizza.Models;
+using Pizza.Utils;
 using Pizza.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -41,7 +42,7 @@ namespace Pizza.Controllers
             var newItem = new OrderItem { ProductId = model.ProductId, Product = db.Products.Find(model.ProductId), Quantity = model.Quantity };
             var user = db.Users.Find(userManager.GetUserId(User));
             var order = db.Orders.Where(o => o.IsActive && o.User == user).FirstOrDefault();
-            order ??= new Order { User = user, OrderItems = new List<OrderItem>(), IsClosed = false, TotalPrice = 0, IsActive = true };
+            order ??= new Order { User = user, OrderItems = new List<OrderItem>(), TotalPrice = 0, IsActive = true, StatusId = (int)OrderStatuses.NotMaked };
             if (db.OrderItems.Any(oi => oi.Product == newItem.Product && oi.Order == order))
             {
                 var item = db.OrderItems.Where(oi => oi.Product == newItem.Product && oi.Order == order).FirstOrDefault();
@@ -80,7 +81,8 @@ namespace Pizza.Controllers
             order.TotalPrice -= (uint)(db.Products.Find(orderItem.ProductId).Price * orderItem.Quantity);
             db.OrderItems.Remove(orderItem);
             db.Orders.Update(order);
-            if (!db.OrderItems.Any(oi => oi.OrderId == orderItem.OrderId))
+            db.SaveChanges();
+            if (!db.OrderItems.Any(oi => oi.OrderId == order.OrderId))
             {
                 db.Orders.Remove(order);
             }
@@ -95,10 +97,9 @@ namespace Pizza.Controllers
             var order = db.Orders.FirstOrDefault(o => o.User == user && o.IsActive);
             if (order != null)
             {
-                order.IsActive = false;
-                order.IsClosed = true;
-                order.CloseDateTime = new DateTime();
-                order.CloseDateTime = DateTime.Now;
+                order.IsActive = false;                              
+                order.OrderTime = DateTime.Now;
+                order.StatusId = (int)OrderStatuses.Processing;
                 db.Orders.Update(order);
                 db.SaveChanges();
             }
