@@ -1,0 +1,16 @@
+﻿@using Pizza.Utils
+
+<div class="role-management-panel">
+    <h2>Управление ролями</h2>
+    <select class="role-management-panel__select">
+        <option value="all" selected>Все</option>
+        <option value="admin" >Администраторы</option>
+        <option value="manager" >Менеджеры</option>
+        <option value="user" >Пользователи</option>
+    </select>
+    <div class="role-management-panel__user-list">
+        @await Component.InvokeAsync("RolePanelUserList", new { newSort = RolesSort.All })
+    </div>
+</div>
+<a asp-controller="Admin" asp-action="Index" class="products-list-back-link back-link">Назад</a>
+<script src="~/js/roleManagement.js"></script>

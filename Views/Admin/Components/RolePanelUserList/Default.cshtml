@@ -1,0 +1,22 @@
+﻿@model List<Tuple<User, List<string>>>
+
+@foreach (var user in Model) {
+    <div class="role-management-panel__user">
+        <h3>@user.Item1.UserName</h3>
+        <span>Роли:</span>
+        <br/>
+        Администратор&nbsp;        
+        <input type="checkbox" checked=@user.Item2.Contains("admin") 
+        disabled=@(user.Item1.UserName == "admin") 
+        class="role-management__admin-checkbox"
+        name=@user.Item1.UserName
+        />            
+        <br/>
+        Менеджер&nbsp;
+        <input type="checkbox" 
+        checked=@user.Item2.Contains("manager")
+        class="role-management__manager-checkbox"
+        name=@user.Item1.UserName
+        />        
+    </div>
+}

@@ -441,20 +441,28 @@ input[type="number"] {
     display: inline-block;
 }
 
-.account-order-list-link, 
-.account-admin-panel-link {   
+.account-order-list-link,
+.account-admin-panel-link,
+.role-management-link,
+.manager-order-panel-link {
     margin-left: 3rem;
     transition: all .3s ease;
 }
 .account-order-list-link:hover,
-.account-admin-panel-link:hover {
+.account-admin-panel-link:hover,
+.role-management-link:hover,
+.manager-order-panel-link:hover {
    color: royalblue;
 }
 
 .account-order-list-link:hover::after,
 .account-admin-panel-link:hover::after,
+.role-management-link:hover::after,
+.manager-order-panel-link:hover::after,
 .account-order-list-link:hover::before,
-.account-admin-panel-link:hover::before {
+.account-admin-panel-link:hover::before,
+.role-management-link:hover::before,
+.manager-order-panel-link:hover::before {
     background-color: royalblue;
 }
 
@@ -555,9 +563,32 @@ input[type="number"] {
     left: 20rem;
 }
 
+.role-management-panel select,
+.role-management-panel__user {
+    margin-left: 5rem;
+}
+
+.order-list__item summary {
+    cursor: pointer;
+}
+
+.order-list__item span {
+    padding-left: 5px;
+}
+
+.change-status-button {
+    position: relative;
+}
+
+.change-status-button:hover::after,
+.change-status-button:hover::before {
+    background-color: royalblue;
+}
+
 .admin-product-container__create-button,
 .admin-product-container__edit-button,
-.admin-product-container__delete-button {
+.admin-product-container__delete-button,
+.change-status-button {
     background-color: transparent;
     padding: 0;
     margin: 0;
@@ -567,7 +598,8 @@ input[type="number"] {
     transition: all .3s ease;
 }
 .admin-product-container__create-button:hover,
-.admin-product-container__edit-button:hover {
+.admin-product-container__edit-button:hover,
+.change-status-button:hover {
     color: royalblue;
 }
 .admin-product-container__delete-button:hover {

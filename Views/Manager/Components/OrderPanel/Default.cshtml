@@ -26,15 +26,15 @@
         </div>
         @if (order.StatusId == (int)OrderStatuses.Processing)
         {
-            <button type="button" id="@order.OrderId" class="order__take-order animated-bottom-border">Принять заказ</button>
+            <button type="button" id="@order.OrderId" class="order__take-order change-status-button animated-bottom-border">Принять заказ</button>
         }
         @if (order.StatusId == (int)OrderStatuses.Assembling)
         {
-            <button type="button" id="@order.OrderId" class="order__send-order animated-bottom-border">Отправить заказ</button>
+            <button type="button" id="@order.OrderId" class="order__send-order change-status-button animated-bottom-border">Отправить заказ</button>
         }
         @if (order.StatusId == (int)OrderStatuses.Delivering)
         {
-            <button type="button" id="@order.OrderId" class="order__complete-delivery animated-bottom-border">Доставка завершена</button>
+            <button type="button" id="@order.OrderId" class="order__complete-delivery change-status-button animated-bottom-border">Доставка завершена</button>
         }
     }
 </div>

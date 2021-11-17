@@ -1,14 +1,19 @@
-﻿let orderList = document.querySelector('.order-list');
-orderList.addEventListener('click', async (e) => {
-    if (e.target.classList[0] === "order__take-order") {
-        onClick(e.target.id, 3);
+﻿let button = document.querySelector('.change-status-button');
+button.addEventListener('click', async (e) => {
+    e.preventDefault;
+    let newStatus;
+    switch (e.target.classList[0]) {
+        case "order__take-order":
+            newStatus = 3;
+            break;
+        case "order__send-order":
+            newStatus = 4;
+            break;
+        case "order__complete-delivery":
+            newStatus = 5;
+            break;
     }
-    if (e.target.classList[0] === "order__send-order") {
-        onClick(e.target.id, 4);
-    }
-    if (e.target.classList[0] === "order__complete-delivery") {
-        onClick(e.target.id, 5);
-    }
+    onClick(e.target.id, newStatus);
 });
 
 async function onClick(orderId, newStatus) {

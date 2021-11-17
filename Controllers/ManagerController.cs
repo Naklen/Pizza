@@ -20,7 +20,7 @@ namespace Pizza.Controllers
         }
 
         public IActionResult OrderPanel()
-        {
+        {            
             return View();
         }
 

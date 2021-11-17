@@ -1,8 +1,11 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Pizza.Components;
 using Pizza.Models;
+using Pizza.Utils;
 using Pizza.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -17,16 +20,46 @@ namespace Pizza.Controllers
     {
         PizzaContext db;
         IWebHostEnvironment appEnvironment;
+        UserManager<User> _userManager;
+        RoleManager<IdentityRole> _roleManager;
 
-        public AdminController(PizzaContext context, IWebHostEnvironment appEnvironment)
+        public AdminController(PizzaContext context, IWebHostEnvironment appEnvironment, UserManager<User> userManager, RoleManager<IdentityRole> roleManager)
         {
             db = context;
             this.appEnvironment = appEnvironment;
+            _userManager = userManager;
+            _roleManager = roleManager;
         }
         
         public IActionResult Index()
         {
             return View();
+        }
+
+        public IActionResult RoleManagement()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public IActionResult GetUserList([FromQuery] NewRoleSortViewModel model)
+        {
+            return ViewComponent(typeof (RolePanelUserListViewComponent), new {newSort = model.Sort});
+        }
+
+        [HttpPost]
+        public async void ChangeUserRoles([FromBody] ChangeUserRoleViewModel model)
+        {
+            if (model.UserName == "admin" && model.RoleName == "admin")
+                return;
+            var user = await _userManager.FindByNameAsync(model.UserName);            
+            if (user != null)
+            {
+                if (model.HasRole)
+                    await _userManager.AddToRoleAsync(user, model.RoleName);
+                else
+                    await _userManager.RemoveFromRoleAsync(user, model.RoleName);
+            }
         }
 
         public IActionResult ProductsList()
