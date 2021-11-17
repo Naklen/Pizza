@@ -1,7 +1,8 @@
-﻿let button = document.querySelector('.change-status-button');
+﻿const orderList = document.querySelector('.order-list');
+let button = document.querySelector('.change-status-button');
 button.addEventListener('click', async (e) => {
     e.preventDefault;
-    let newStatus;
+    let newStatus;    
     switch (e.target.classList[0]) {
         case "order__take-order":
             newStatus = 3;
@@ -12,8 +13,8 @@ button.addEventListener('click', async (e) => {
         case "order__complete-delivery":
             newStatus = 5;
             break;
-    }
-    onClick(e.target.id, newStatus);
+    }   
+    await onClick(e.target.id, newStatus);
 });
 
 async function onClick(orderId, newStatus) {
